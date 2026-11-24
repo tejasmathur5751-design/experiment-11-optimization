@@ -1,16 +1,27 @@
-/* Unminified Stylesheet for Experiment 11 */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f4f7fb;
-  color: #333333;
+  background-color: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
 }
 
 header {
   background-color: #1a3a5c;
-  color: #ffffff;
+  color: white;
   text-align: center;
-  padding: 22px 20px;
+  padding: 25px 20px;
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}
+
+header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
 }
 
 nav {
@@ -20,10 +31,10 @@ nav {
 }
 
 nav a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 15px;
+  margin: 0 14px;
+  font-size: 14px;
 }
 
 nav a:hover {
@@ -31,15 +42,134 @@ nav a:hover {
 }
 
 main {
-  max-width: 800px;
-  margin: 28px auto;
+  max-width: 720px;
+  margin: 30px auto;
   padding: 0 20px;
 }
 
 section {
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 8px;
   padding: 22px;
   margin-bottom: 22px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+section h2 {
+  margin-top: 0;
+  color: #1a3a5c;
+  font-size: 18px;
+  border-bottom: 2px solid #eef2f6;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.gallery {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.gallery-item {
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+}
+
+.gallery-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.caption {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+
+button {
+  background-color: #1a3a5c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+button:hover {
+  background-color: #2a5298;
+}
+
+.output-box {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 5px;
+  background-color: #f1f3f5;
+  font-size: 14px;
+}
+
+.output-box.fresh {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.output-box.cached {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.compare-box {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.code-side {
+  flex: 1;
+  min-width: 240px;
+  background-color: #f8fafc;
+  border: 1px solid #dce4ec;
+  border-radius: 5px;
+  padding: 12px;
+}
+
+.code-side h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #1a3a5c;
+}
+
+pre {
+  background-color: #edf2f7;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+footer {
+  background-color: #1a3a5c;
+  color: #ddd;
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  margin-top: 35px;
 }

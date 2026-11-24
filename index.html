@@ -3,157 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Optimization</title>
-<!-- Preconnect for faster resource loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<!-- Minified custom CSS inline for critical styles -->
-<style>body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#333}header{background:#1a3a5c;color:#fff;text-align:center;padding:22px 20px}nav{background:#2a5298;text-align:center;padding:10px}nav a{color:#fff;text-decoration:none;margin:0 15px;font-size:15px}nav a:hover{text-decoration:underline}main{max-width:800px;margin:28px auto;padding:0 20px}section{background:#fff;border-radius:8px;padding:22px;margin-bottom:22px;box-shadow:0 2px 6px rgba(0,0,0,.08)}section h2{margin-top:0;color:#1a3a5c;font-size:18px;border-bottom:2px solid #eee;padding-bottom:8px}.label{font-weight:700;color:#1a3a5c;font-size:13px;text-transform:uppercase;margin:12px 0 5px 0;border-left:4px solid #2a5298;padding-left:8px}.desc{font-size:13.5px;color:#444;line-height:1.65;margin:5px 0 10px 14px}.code-tag{background:#2a5298;color:#fff;font-family:"Courier New",monospace;font-size:10px;padding:3px 10px;border-radius:3px 3px 0 0;display:inline-block;margin-top:10px}pre{background:#f2f5fb;border:1px solid #bccfe0;border-radius:0 4px 4px 4px;padding:10px;font-family:"Courier New",monospace;font-size:11px;line-height:1.5;white-space:pre-wrap;margin-bottom:10px}.img-grid{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}.img-box{text-align:center;font-size:12px;color:#666}.img-box img{border-radius:6px;border:1px solid #dde;display:block;margin-bottom:4px}.metrics{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.metric{flex:1;min-width:130px;background:#f0f7ff;border-radius:6px;padding:12px;text-align:center}.metric .value{font-size:28px;font-weight:700;color:#2a5298}.metric .name{font-size:12px;color:#555;margin-top:3px}footer{background:#1a3a5c;color:#ccc;text-align:center;padding:15px;font-size:13px}</style>
+<title>Website Optimization Demo</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Website Optimization</h1>
-  <p>Caching, CSS/JS Minification and Lazy Loading Images</p>
+  <h1>Website Performance Optimization</h1>
+  <p>Caching, Minification and Image Lazy Loading</p>
 </header>
 
 <nav>
-  <a href="#caching">Caching</a>
-  <a href="#minification">Minification</a>
-  <a href="#lazyload">Lazy Loading</a>
-  <a href="#results">Results</a>
+  <a href="#lazy">Lazy Loading</a>
+  <a href="#caching">Caching Test</a>
+  <a href="#minify">Minification</a>
+  <a href="#about">About</a>
 </nav>
 
 <main>
 
-  <section id="caching">
-    <h2>1. Browser Caching</h2>
-    <div class="label">What is Caching?</div>
-    <div class="desc">Caching stores copies of files locally in the browser so they don't have to be downloaded again on repeat visits. This reduces server load and makes the page load faster.</div>
-
-    <div class="label">Cache-Control Headers (Express.js)</div>
-    <div class="code-tag">server.js</div>
-    <pre>const express = require('express');
-const app = express();
-
-// Serve static files with caching for 1 day (86400 seconds)
-app.use(express.static('public', {
-  maxAge: '1d',          // Cache static assets for 1 day
-  etag: false            // Disable ETag for simpler caching
-}));
-
-// Cache-Control header for specific routes
-app.get('/api/data', (req, res) => {
-  res.set('Cache-Control', 'public, max-age=300'); // 5 minutes
-  res.json({ message: 'This response is cached for 5 minutes' });
-});
-
-app.listen(3000);</pre>
-
-    <div class="label">Service Worker for Offline Caching</div>
-    <div class="code-tag">sw.js</div>
-    <pre>const CACHE_NAME = 'my-site-v1';
-const FILES_TO_CACHE = ['/', '/index.html', '/style.css', '/script.js'];
-
-// Install: cache all files
-self.addEventListener('install', function(e) {
-  e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE)));
-});
-
-// Fetch: serve from cache if available, else fetch from network
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(response => response || fetch(e.request))
-  );
-});</pre>
+  <section id="about">
+    <h2>About Optimization</h2>
+    <p>
+      Optimizing a website means making it load faster for users. In this experiment, I implemented three common techniques:
+    </p>
+    <ul>
+      <li><strong>Image Lazy Loading:</strong> Defers loading off-screen images until the user scrolls down to them.</li>
+      <li><strong>Browser Caching:</strong> Saves static files locally in the browser so they do not need to be downloaded again.</li>
+      <li><strong>CSS Minification:</strong> Removes extra spaces and comments to make files smaller.</li>
+    </ul>
   </section>
 
-  <section id="minification">
-    <h2>2. CSS and JavaScript Minification</h2>
-    <div class="desc">Minification removes unnecessary whitespace, comments and long variable names from CSS/JS files. This reduces file size and speeds up download time.</div>
+  <!-- 1. Lazy loading demo -->
+  <section id="lazy">
+    <h2>1. Image Lazy Loading Demo</h2>
+    <p>The images below use the HTML <code>loading="lazy"</code> attribute. They are loaded by the browser only when they come into view:</p>
 
-    <div class="label">Before Minification (normal CSS)</div>
-    <div class="code-tag">style.css (original – 180 bytes)</div>
-    <pre>/* Page body styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}</pre>
-
-    <div class="label">After Minification (minified CSS)</div>
-    <div class="code-tag">style.min.css (60 bytes – 67% smaller)</div>
-    <pre>body{font-family:Arial,sans-serif;margin:0;background-color:#f4f4f4;color:#333}</pre>
-
-    <div class="label">Script Loading Optimization</div>
-    <div class="code-tag">index.html</div>
-    <pre>&lt;!-- defer: script loads in background, runs after HTML is parsed --&gt;
-&lt;script src="script.min.js" defer&gt;&lt;/script&gt;
-
-&lt;!-- async: script loads and runs as soon as downloaded (for independent scripts) --&gt;
-&lt;script src="analytics.min.js" async&gt;&lt;/script&gt;</pre>
-  </section>
-
-  <section id="lazyload">
-    <h2>3. Lazy Loading of Images</h2>
-    <div class="desc">Lazy loading delays loading of images until they are about to enter the viewport. This reduces initial page load time, especially for pages with many images.</div>
-
-    <div class="label">HTML Native Lazy Loading</div>
-    <div class="code-tag">index.html</div>
-    <pre>&lt;!-- loading="lazy" tells the browser to load only when near viewport --&gt;
-&lt;img src="photo.jpg" alt="Photo description" loading="lazy" width="600" height="400"&gt;
-
-&lt;!-- loading="eager" (default) loads immediately --&gt;
-&lt;img src="hero.jpg" alt="Hero image" loading="eager" width="1200" height="600"&gt;</pre>
-
-    <div class="label">Live Demo – Scroll down to see lazy loaded images</div>
-    <!-- Lazy loaded images demo using placeholder service -->
-    <div class="img-grid">
-      <div class="img-box">
-        <img src="https://picsum.photos/seed/opt1/280/160" alt="Lazy image 1" loading="lazy" width="280" height="160">
-        <span>loading="lazy"</span>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1015/320/200" alt="River and Mountains" loading="lazy" width="320" height="200">
+        <p class="caption">Landscape (loading="lazy")</p>
       </div>
-      <div class="img-box">
-        <img src="https://picsum.photos/seed/opt2/280/160" alt="Lazy image 2" loading="lazy" width="280" height="160">
-        <span>loading="lazy"</span>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1018/320/200" alt="Mountain Peak" loading="lazy" width="320" height="200">
+        <p class="caption">Nature view (loading="lazy")</p>
       </div>
     </div>
   </section>
 
-  <section id="results">
-    <h2>4. Performance Improvement Results</h2>
-    <div class="desc">The optimizations below were applied to the website. The table shows the improvement in key metrics measured using Chrome DevTools / Lighthouse.</div>
+  <!-- 2. Caching demo -->
+  <section id="caching">
+    <h2>2. Browser Caching Demo</h2>
+    <p>Click the button to test how caching stores data locally to avoid repeated network calls:</p>
+    <button onclick="testCache()">Load Data</button>
+    <div id="cacheOutput" class="output-box">Click "Load Data" to test caching.</div>
+  </section>
 
-    <table style="width:100%;border-collapse:collapse;font-size:13px;">
-      <thead>
-        <tr style="background:#1a3a5c;color:white;">
-          <th style="padding:9px;text-align:left;">Optimization</th>
-          <th style="padding:9px;">Before</th>
-          <th style="padding:9px;">After</th>
-          <th style="padding:9px;">Improvement</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td style="padding:9px;border:1px solid #ddd;">CSS Minification</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">18 KB</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">6 KB</td><td style="padding:9px;border:1px solid #ddd;text-align:center;color:#27ae60;">67% smaller</td></tr>
-        <tr style="background:#f8f9fa;"><td style="padding:9px;border:1px solid #ddd;">JS Minification</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">24 KB</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">9 KB</td><td style="padding:9px;border:1px solid #ddd;text-align:center;color:#27ae60;">63% smaller</td></tr>
-        <tr><td style="padding:9px;border:1px solid #ddd;">Lazy Loading (images)</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">2.4 s load</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">0.9 s load</td><td style="padding:9px;border:1px solid #ddd;text-align:center;color:#27ae60;">63% faster</td></tr>
-        <tr style="background:#f8f9fa;"><td style="padding:9px;border:1px solid #ddd;">Browser Caching</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">1.8 s (repeat)</td><td style="padding:9px;border:1px solid #ddd;text-align:center;">0.3 s (repeat)</td><td style="padding:9px;border:1px solid #ddd;text-align:center;color:#27ae60;">83% faster</td></tr>
-      </tbody>
-    </table>
+  <!-- 3. Minification example -->
+  <section id="minify">
+    <h2>3. CSS Minification</h2>
+    <p>Minifying removes all spaces, line breaks and comments. Here is an example from this project:</p>
 
-    <div class="metrics">
-      <div class="metric"><div class="value">95</div><div class="name">Performance Score</div></div>
-      <div class="metric"><div class="value">98</div><div class="name">Accessibility Score</div></div>
-      <div class="metric"><div class="value">100</div><div class="name">Best Practices</div></div>
-      <div class="metric"><div class="value">92</div><div class="name">SEO Score</div></div>
+    <div class="compare-box">
+      <div class="code-side">
+        <h4>Before Minification (Readable)</h4>
+        <pre>body {
+  font-family: Arial;
+  margin: 0;
+  color: #333;
+}</pre>
+      </div>
+      <div class="code-side">
+        <h4>After Minification (Compressed)</h4>
+        <pre>body{font-family:Arial;margin:0;color:#333}</pre>
+      </div>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <p>&copy; 2026 Website Optimization Demo. Web Design Lab Experiment 11.</p>
+  <p>&copy; 2026 Web Design Lab Experiment 11.</p>
 </footer>
 
+<script>
+function testCache() {
+  var box = document.getElementById("cacheOutput");
+  var cachedTime = localStorage.getItem("opt_cache_demo");
+
+  if (cachedTime) {
+    box.innerHTML = "<strong>Loaded from Cache:</strong> Saved at " + cachedTime + " (No network request needed)";
+    box.className = "output-box cached";
+  } else {
+    var now = new Date().toLocaleTimeString();
+    localStorage.setItem("opt_cache_demo", now);
+    box.innerHTML = "<strong>Freshly Loaded:</strong> Stored in cache at " + now + ". Click again to see cached result.";
+    box.className = "output-box fresh";
+  }
+}
+</script>
 </body>
 </html>
