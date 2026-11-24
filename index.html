@@ -10,44 +10,31 @@
 
 <header>
   <h1>Website Performance Optimization</h1>
-  <p>Caching, Minification and Image Lazy Loading</p>
+  <p>Image Lazy Loading, Browser Caching and CSS Minification</p>
 </header>
 
 <nav>
   <a href="#lazy">Lazy Loading</a>
   <a href="#caching">Caching Test</a>
-  <a href="#minify">Minification</a>
-  <a href="#about">About</a>
+  <a href="#minify">CSS Minification</a>
 </nav>
 
 <main>
 
-  <section id="about">
-    <h2>About Optimization</h2>
-    <p>
-      Optimizing a website means making it load faster for users. In this experiment, I implemented three common techniques:
-    </p>
-    <ul>
-      <li><strong>Image Lazy Loading:</strong> Defers loading off-screen images until the user scrolls down to them.</li>
-      <li><strong>Browser Caching:</strong> Saves static files locally in the browser so they do not need to be downloaded again.</li>
-      <li><strong>CSS Minification:</strong> Removes extra spaces and comments to make files smaller.</li>
-    </ul>
-  </section>
-
   <!-- 1. Lazy loading demo -->
   <section id="lazy">
     <h2>1. Image Lazy Loading Demo</h2>
-    <p>The images below use the HTML <code>loading="lazy"</code> attribute. They are loaded by the browser only when they come into view:</p>
+    <p>Images use the HTML <code>loading="lazy"</code> attribute so they download only when scrolled into view:</p>
 
     <div class="gallery">
       <div class="gallery-item">
         <img src="https://picsum.photos/id/1015/320/200" alt="River and Mountains" loading="lazy" width="320" height="200">
-        <p class="caption">Landscape (loading="lazy")</p>
+        <p class="caption">Landscape View (loading="lazy")</p>
       </div>
 
       <div class="gallery-item">
         <img src="https://picsum.photos/id/1018/320/200" alt="Mountain Peak" loading="lazy" width="320" height="200">
-        <p class="caption">Nature view (loading="lazy")</p>
+        <p class="caption">Mountain Trail (loading="lazy")</p>
       </div>
     </div>
   </section>
@@ -55,7 +42,7 @@
   <!-- 2. Caching demo -->
   <section id="caching">
     <h2>2. Browser Caching Demo</h2>
-    <p>Click the button to test how caching stores data locally to avoid repeated network calls:</p>
+    <p>Click the button below to test how caching stores data locally to avoid repeated server requests:</p>
     <button onclick="testCache()">Load Data</button>
     <div id="cacheOutput" class="output-box">Click "Load Data" to test caching.</div>
   </section>
@@ -63,7 +50,7 @@
   <!-- 3. Minification example -->
   <section id="minify">
     <h2>3. CSS Minification</h2>
-    <p>Minifying removes all spaces, line breaks and comments. Here is an example from this project:</p>
+    <p>Minifying removes all whitespace, line breaks, and comments to reduce file size:</p>
 
     <div class="compare-box">
       <div class="code-side">
