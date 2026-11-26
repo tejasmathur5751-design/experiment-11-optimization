@@ -1,16 +1,12 @@
-# Experiment 11 – Website Optimization (Caching, Minification, Lazy Loading)
+# Experiment 11 – Website Performance Optimization (Lazy Loading & Browser Caching)
 
 ## Aim
-Optimize an existing website by implementing HTTP caching, minification of CSS and JavaScript, and lazy loading of images.
+Optimize a website's loading speed and user experience by implementing image lazy loading and client-side browser caching.
 
 ## Techniques Demonstrated
-1. **HTTP Caching**: Cache-Control headers and Service Worker cache strategies.
-2. **Minification**: Compressing CSS and JS to reduce payload size and speed up transmission.
-3. **Lazy Loading**: Native HTML `loading="lazy"` on image elements to defer offscreen asset fetching.
+1. **Image Lazy Loading**: Native HTML `loading="lazy"` attribute on `<img>` elements to defer offscreen asset fetching until the user scrolls into view.
+2. **Browser Caching**: Client-side `localStorage` caching to store data locally and eliminate redundant network re-fetching on subsequent requests.
 
 ## Key Files
-- `index.html`: Showcase with live demos, Lighthouse metrics, and before/after comparisons
-- `style.css`: Unminified stylesheet reference
-- `style.min.css`: Minified production stylesheet
-- `script.js`: Unminified JavaScript demo
-- `script.min.js`: Minified production JavaScript
+- `index.html`: Showcase with live image lazy loading gallery, interactive browser caching test, and student details.
+- `style.css`: Clean, responsive stylesheet for the optimization demo.

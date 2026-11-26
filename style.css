@@ -64,15 +64,6 @@ section h2 {
   margin-bottom: 12px;
 }
 
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
 .gallery {
   display: flex;
   gap: 15px;
@@ -132,37 +123,9 @@ button:hover {
   color: #155724;
 }
 
-.compare-box {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.code-side {
-  flex: 1;
-  min-width: 240px;
-  background-color: #f8fafc;
-  border: 1px solid #dce4ec;
-  border-radius: 5px;
-  padding: 12px;
-}
-
-.code-side h4 {
-  margin: 0 0 8px 0;
-  font-size: 13px;
-  color: #1a3a5c;
-}
-
-pre {
-  background-color: #edf2f7;
-  padding: 8px 10px;
-  border-radius: 4px;
-  font-family: "Courier New", monospace;
-  font-size: 12px;
-  margin: 0;
-  line-height: 1.4;
-  white-space: pre-wrap;
+#student p {
+  margin: 6px 0;
+  font-size: 14.5px;
 }
 
 footer {
